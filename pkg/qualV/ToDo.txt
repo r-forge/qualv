@@ -1,0 +1,15 @@
+o add dmin - parameter to f.slope
+
+o fix citation
+
+o create plot function for "plain" LCS
+
+o implement faster LCS algorithm
+
+o pass additional parameters (feature-parameters, manual bandwidth) to qvalLCS
+
+OR, possibly better ???
+
+o allow user-defined function to be passed to qvalLCS
+
+

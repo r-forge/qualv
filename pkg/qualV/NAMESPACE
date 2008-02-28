@@ -1,0 +1,25 @@
+import("KernSmooth")
+
+exportPattern(".*M.*E")
+export(
+       "f.curve",
+       "f.level",
+       "f.slope",
+       "f.steep",
+       "LCS",
+       "qvalLCS",
+       "plot.qvalLCS",
+       "print.qvalLCS",
+       "summary.qvalLCS",
+       "GRI",
+       "EF",
+       "MAE",
+       "MAPE",
+       "MSE",
+       "transBeta",
+       "transBezier",
+       "transSimplex",
+       "plot.timeTransME",
+       "print.timeTransME",
+       "summary.timeTransME"
+       )

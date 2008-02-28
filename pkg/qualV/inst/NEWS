@@ -1,0 +1,29 @@
+0.2-3
+
+o fixed: encoding issue in .Rd files
+o fixed: break of package check due to fail of numerical optimization  
+         in examples of timeTransME
+o improved: a few minor documentation issues
+o G.v.d. Boogaart is now package maintainer
+
+0.2-2
+
+o generic print functions added
+
+0.2-1
+
+o added NEWS and THANKS
+
+0.2
+
+o code and documentation improvements
+o removed from .Rd: "## The function is currently defined as ..."
+
+0.1-1
+
+o documentation improvements
+
+
+0.1
+
+o initial version
