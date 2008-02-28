@@ -1,3 +1,8 @@
+0.2-4
+
+o moved to R-Forge
+o added CITATION
+
 0.2-3
 
 o fixed: encoding issue in .Rd files

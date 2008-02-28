@@ -1,0 +1,24 @@
+citHeader("To cite package 'qualV' in publications use:")
+
+citEntry(entry="Article",
+  title =	"Statistical Methods for the Qualitative Assessment 
+    of Dynamic Models with Time Delay (R Package qualV)",
+  author =	personList(as.person("Stefanie  Jachner"), 
+                       as.person("K.Gerald van den Boogaart"),
+                       as.person("Thomas  Petzoldt")),
+  journal =	"Journal of Statistical Software",
+  volume =	"22",
+  number =	"8",
+  pages =	"1--30",
+  year = 	"2007",
+  CODEN =	"JSSOBK",
+  ISSN = 	"1548-7660",
+  URL =  	"http://www.jstatsoft.org/v22/i08",
+  keywords =	"ecological modeling, qualitative validation criteria, 
+    time shift, R.",
+  textVersion = paste("Jachner, S., K. G. van den Boogaart and T. Petzoldt (2007).
+    Statistical Methods for the Qualitative Assessment of Dynamic Models 
+    with Time Delay (R Package qualV).
+    Journal of Statistical Software, 22(8), 1--30.
+    URL http://www.jstatsoft.org/v22/i08/")
+)
