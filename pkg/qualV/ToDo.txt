@@ -1,15 +1,29 @@
 o add dmin - parameter to f.slope
 
-o fix citation
+o fix bug in dontrun/plot examples of timeTransME (3 examples on help page)
+
+o rebirth of "hBandwith" and "intervalTree" (from qualV 0.1-1)
+
+o split .R files into smaller ones identified by function names
 
 o create plot function for "plain" LCS
 
 o implement faster LCS algorithm
+
+o improve solidOptim
+
+o explore potential relationships to package "dtw" (dynamic time warping)
 
 o pass additional parameters (feature-parameters, manual bandwidth) to qvalLCS
 
 OR, possibly better ???
 
 o allow user-defined function to be passed to qvalLCS
+
+o simplify o... and p... arguments (allow matrix/data.frame with two columns)
+
+o simplify examples (e.g. smoothing)
+
+
 
 
