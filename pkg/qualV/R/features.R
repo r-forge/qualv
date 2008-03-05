@@ -8,29 +8,31 @@ steps <- function (x, difx, tol = 1e-6 * max(abs(difx))) {
     warning ("time steps may be unequal", immediate. = TRUE)
 }
 
-f.slope <- function (x, y, f = 0.1) {
+f.slope <- function (x, y, f = 0.1, scale = c("mean", "range", "sd", "none")) {
+  scale <- match.arg(scale)
   N(x, y)
-   
   difx <- diff(x)
-  steps(x, difx)
-  
+  steps(x, difx) ## checks for equal spacing
   dify <- diff(y)
-  difq <- c(0, dify / difx) 
-  daten <- data.frame(difq, v = rep(0, length(difq)))
-  epsilon <- mean(abs(difq[-1])) * f
-  
+  difq <- c(0, dify / difx)
+  epsilon <- switch(scale,
+    mean   = mean(abs(difq[-1])) * f,
+    range  = abs(diff(range(difq))) * f,
+    sd     = sd(difq[-1]) * f,
+    none   = f
+  )
+  dat <- data.frame(difq, v = rep(0, length(difq)))
   # increase
-  plus <- which(daten$difq > epsilon)
-  daten$v[plus] <- "A"
+  plus <- which(dat$difq > epsilon)
+  dat$v[plus] <- "A"
   # decrease
-  minus <- which(daten$difq < -epsilon)
-  daten$v[minus] <- "B" 
+  minus <- which(dat$difq < -epsilon)
+  dat$v[minus] <- "B"
   # constant
-  null <- which(daten$difq >= -epsilon & daten$difq <= epsilon)
-  daten$v[null] <- "C"
-  
-  v <- daten$v
-  v
+  null <- which(dat$difq >= -epsilon & dat$difq <= epsilon)
+
+  dat$v[null] <- "C"
+  dat$v
 }
 
 f.curve <- function (x, y, f = 0.1) {
@@ -46,20 +48,20 @@ f.curve <- function (x, y, f = 0.1) {
   dify2 <- diff(difq1)
   difq2 <- dify2 / difx2
   
-  daten <- data.frame(difq2 = difq2, v = rep(0, length(difq2)))
+  dat <- data.frame(difq2 = difq2, v = rep(0, length(difq2)))
   epsilon <- mean(abs(difq2)) * f
   
   # convex
-  plus <- which(daten$difq2 > epsilon)
-  daten$v[plus] <- "K"
+  plus <- which(dat$difq2 > epsilon)
+  dat$v[plus] <- "K"
   # concave
-  minus <- which(daten$difq2 < -epsilon)
-  daten$v[minus] <- "I" 
+  minus <- which(dat$difq2 < -epsilon)
+  dat$v[minus] <- "I"
   # constant
-  null <- which(daten$difq2 >= -epsilon & daten$difq2 <= epsilon)
-  daten$v[null] <- "J"
+  null <- which(dat$difq2 >= -epsilon & dat$difq2 <= epsilon)
+  dat$v[null] <- "J"
   
-  v <- c(0, paste(c(0, daten$v), c(daten$v, 0), sep = ""))
+  v <- c(0, paste(c(0, dat$v), c(dat$v, 0), sep = ""))
   v
 }
 
@@ -73,19 +75,19 @@ f.steep <- function (x, y, f1 = 1, f2 = 0.1) {
   dify <- diff(y)
   difq <- c(0, dify / difx)
   alpha <- abs(atan(difq)) * 180 / pi
-  daten <- data.frame(difq = difq, alpha = alpha, v = rep(0, length(difq)))    
+  dat <- data.frame(difq = difq, alpha = alpha, v = rep(0, length(difq)))
      
   # very steep
-  ss <- which(daten$alpha > f1)
-  daten$v[ss] <- "S"
+  ss <- which(dat$alpha > f1)
+  dat$v[ss] <- "S"
   # steep
-  steep <- which(daten$alpha >= f2 & daten$alpha <= f1)
-  daten$v[steep] <- "T" 
+  steep <- which(dat$alpha >= f2 & dat$alpha <= f1)
+  dat$v[steep] <- "T"
   # not steep
-  nsteep <- which(daten$alpha < f2)
-  daten$v[nsteep] <- "U"
+  nsteep <- which(dat$alpha < f2)
+  dat$v[nsteep] <- "U"
   
-  v <- daten$v 
+  v <- dat$v
   v
 }
 
@@ -93,15 +95,15 @@ f.level <- function (y, high = 0.8, low = 0.2) {
   if(length(y) == 0) stop ("vector of length zero")
 
   y <- standard01(y)
-  daten <- data.frame(y, v = rep(0, length(y)))
+  dat <- data.frame(y, v = rep(0, length(y)))
   
-  H <- which(daten$y >= high)
-  daten$v[H] <- "H"
-  M <- which(daten$y > low & daten$y < high)
-  daten$v[M] <- "M"
-  N <- which(daten$y <= low)
-  daten$v[N] <- "L"
+  H <- which(dat$y >= high)
+  dat$v[H] <- "H"
+  M <- which(dat$y > low & dat$y < high)
+  dat$v[M] <- "M"
+  N <- which(dat$y <= low)
+  dat$v[N] <- "L"
 
-  v <- daten$v
+  v <- dat$v
   v
 }

@@ -11,7 +11,7 @@
   derivative, steepness or level of values.}
 
 \usage{
-f.slope(x, y, f = 0.1)
+f.slope(x, y, f = 0.1, scale = c("mean", "range", "sd", "none"))
 f.curve(x, y, f = 0.1)
 f.steep(x, y, f1 = 1, f2 = 0.1)
 f.level(y, high = 0.8, low = 0.2)
@@ -23,6 +23,9 @@ f.level(y, high = 0.8, low = 0.2)
   \item{f}{factor defining the limit for constant (\code{f.slope}) or linear (\code{f.curve}) sequences}
   \item{f1}{factor for the upper bound of steepness}
   \item{f2}{factor for the lower bound of steepness}
+  \item{scale}{method for internal scaling, "mean": \code{f} is multiplied with mean
+    value of increments (\eqn{abs(\Delta y / \Delta x)}{abs(delta y / delta x)}),
+    "range": with range of increments and "sd" with standard deviation of increments.}
   \item{high}{lower limit of high values}
   \item{low}{upper limit of low values}
 }
