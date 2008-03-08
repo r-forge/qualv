@@ -8,34 +8,42 @@ steps <- function (x, difx, tol = 1e-6 * max(abs(difx))) {
     warning ("time steps may be unequal", immediate. = TRUE)
 }
 
-f.slope <- function (x, y, f = 0.1, scale = c("mean", "range", "sd", "none")) {
-  scale <- match.arg(scale)
+scaledEpsilon <- function(difq, scale) {
+  epsilon <- switch(scale,
+    mean   = mean(abs(difq[-1])),
+    range  = abs(diff(range(difq))),
+    IQR    = abs(diff(IQR(difq))),
+    sd     = sd(difq[-1]),
+    none   = 1
+  )
+}
+
+f.slope <- function (x, y, f = 0.1, scale = c("mean", "range", "IQR", "sd", "none")) {
   N(x, y)
   difx <- diff(x)
-  steps(x, difx) ## checks for equal spacing
+  steps(x, difx) # checks for equal spacing
   dify <- diff(y)
   difq <- c(0, dify / difx)
-  epsilon <- switch(scale,
-    mean   = mean(abs(difq[-1])) * f,
-    range  = abs(diff(range(difq))) * f,
-    sd     = sd(difq[-1]) * f,
-    none   = f
-  )
+
+  ## rescale differences
+  scale   <- match.arg(scale)
+  epsilon <- scaledEpsilon(difq, scale) * f
+  
   dat <- data.frame(difq, v = rep(0, length(difq)))
-  # increase
+  ## increase
   plus <- which(dat$difq > epsilon)
   dat$v[plus] <- "A"
-  # decrease
+  ## decrease
   minus <- which(dat$difq < -epsilon)
   dat$v[minus] <- "B"
-  # constant
+  ## constant
   null <- which(dat$difq >= -epsilon & dat$difq <= epsilon)
 
   dat$v[null] <- "C"
   dat$v
 }
 
-f.curve <- function (x, y, f = 0.1) {
+f.curve <- function (x, y, f = 0.1, scale = c("mean", "range", "IQR", "sd", "none")) {
   N(x, y)
   
   difx1 <- diff(x)
@@ -49,7 +57,10 @@ f.curve <- function (x, y, f = 0.1) {
   difq2 <- dify2 / difx2
   
   dat <- data.frame(difq2 = difq2, v = rep(0, length(difq2)))
-  epsilon <- mean(abs(difq2)) * f
+
+  ## rescale differences
+  scale   <- match.arg(scale)
+  epsilon <- scaledEpsilon(difq2, scale) * f
   
   # convex
   plus <- which(dat$difq2 > epsilon)

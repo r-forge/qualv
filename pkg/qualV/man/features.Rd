@@ -11,8 +11,8 @@
   derivative, steepness or level of values.}
 
 \usage{
-f.slope(x, y, f = 0.1, scale = c("mean", "range", "sd", "none"))
-f.curve(x, y, f = 0.1)
+f.slope(x, y, f = 0.1, scale = c("mean", "range", "IQR", "sd", "none"))
+f.curve(x, y, f = 0.1, scale = c("mean", "range", "IQR", "sd", "none"))
 f.steep(x, y, f1 = 1, f2 = 0.1)
 f.level(y, high = 0.8, low = 0.2)
 }
@@ -20,12 +20,13 @@ f.level(y, high = 0.8, low = 0.2)
 \arguments{
   \item{x}{vector of time}
   \item{y}{input y values}
-  \item{f}{factor defining the limit for constant (\code{f.slope}) or linear (\code{f.curve}) sequences}
+  \item{f}{factor defining the limit for constant (\code{f.slope}) or linear 
+    (\code{f.curve}) sequences}
   \item{f1}{factor for the upper bound of steepness}
   \item{f2}{factor for the lower bound of steepness}
-  \item{scale}{method for internal scaling, "mean": \code{f} is multiplied with mean
-    value of increments (\eqn{abs(\Delta y / \Delta x)}{abs(delta y / delta x)}),
-    "range": with range of increments and "sd" with standard deviation of increments.}
+  \item{scale}{method for internal scaling, \code{f} is multiplied with mean
+    value, range, interquartile range (IQR) or standard deviation of increments 
+    (\eqn{abs(\Delta y / \Delta x)}{abs(delta y / delta x)}).}
   \item{high}{lower limit of high values}
   \item{low}{upper limit of low values}
 }
@@ -36,9 +37,9 @@ f.level(y, high = 0.8, low = 0.2)
   the second by convex ('K'), concave ('I') or linear ('J'). For the property of
   the first derivative the segment between two values is characterised
   by very steep ('S'), steep ('T') or not steep ('U') or the values are divided
-  into high ('H'), low ('L') or values in between ('M'). For
-  the last two cases the values will be standardised to ignore quantitative
-  deviations.}
+  into high ('H'), low ('L') or values in between ('M'). Note that for
+  the last two cases the original values and the not increments are 
+  standardised (to \eqn{[0, 1]}).}
 
 \seealso{\code{\link{LCS}}, \code{\link{qvalLCS}}}
 
