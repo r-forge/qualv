@@ -190,14 +190,14 @@ minimum, when \code{trans = "transform"} is very high, because the
 optimization is done a hundred times with random starting values for
 the parameters. This is necessary since with the given objective the
 general purpose optimizers often run into local minima and/or do not
-convergence. The number of iterations can be controlled with the
+converge. The number of iterations can be controlled with the
 parameter \code{trials}. Setting \code{debug = TRUE} gives an impression
 how long it takes to find an improved optimum.
 }
 
 \examples{
 set.seed(123)
-# a constructed example
+## a constructed example
 x <- seq(0, 2*pi, length=10)
 o <- 5 + sin(x) + rnorm(x, sd=0.2) # observation with random error
 p <- 5 + sin(x-1)                  # simulation with time shift
@@ -215,15 +215,15 @@ ttbezier <- timeTransME(o, p, trans = transBezier, trials=5)
 plot(ttbezier)
 }
 
-# observed and measured data with non-matching time intervals
+## observed and measured data with non-matching time intervals
 data(phyto)
 bbobs    <- dpill(obs$t, obs$y)
-n        <- tail(obs$t, n = 1) - obs$t[1] + 1
-obsdpill <- ksmooth(obs$t, obs$y, kernel = "normal", bandwidth = bbobs,
+n        <- diff(range(obs$t)) + 1
+obss     <- ksmooth(obs$t, obs$y, kernel = "normal", bandwidth = bbobs,
             n.points = n)
-obss     <- data.frame(t = obsdpill$x, y = obsdpill$y)
-obss     <- obss[match(sim$t, obss$t), ]
-obss     <- na.omit(obss)
+names(obss) <- c("t", "y")            
+obss     <- as.data.frame(obss)[match(sim$t, obss$t), ]
+
 tt       <- timeTransME(obss$y, sim$y, obss$t, sim$t, ME = SMSE,
             timeMEFactor = 0, time = "transform", type = "n", trials = 5)
 round(tt$totalME, digits = 3)
@@ -246,17 +246,17 @@ plot(tt1)
 summary(tt1)
 
 \dontrun{
-tt2 <- timeTransME(obs$y, sim$y, obs$t, sim$t, ME = SMSLE, type = "n",
+tt2 <- timeTransME(obss$y, sim$y, obss$t, sim$t, ME = SMSLE, type = "n",
   time = "trans", debug = TRUE)
 tt2
-plot(tt2)
+plot(tt2)  # logarithm (SMSLE) is not appropriate for the example
 summary(tt2)
-tt3 <- timeTransME(obs$y, sim$y, obs$t, sim$t, ME = SMSLE, type = "n",
-  time = "trans", trans = transBezier)
+tt3 <- timeTransME(obss$y, sim$y, obss$t, sim$t, ME = SMSE, type = "n",
+  time = "trans", trans = transBezier, debug = TRUE)
 tt3
 plot(tt3)
 summary(tt3)
-tt4 <- timeTransME(obs$y, sim$y, obs$t, sim$t, ME = MSOE, type = "n",
+tt4 <- timeTransME(obss$y, sim$y, obss$t, sim$t, ME = MSOE, type = "n",
   time = "trans", trans = transBezier, debug = TRUE)
 tt4
 plot(tt4)

@@ -1,4 +1,5 @@
 o fix bug in dontrun/plot examples of timeTransME (3 examples on help page)
+  - was: bug in timeTransME  -- fixed --
 
 o rebirth of "hBandwith" and "intervalTree" (from qualV 0.1-1)
 
@@ -9,6 +10,8 @@ o create plot function for "plain" LCS
 o implement faster LCS algorithm
 
 o improve solidOptim
+  - ThPe (2008-03-08): disabled use of "SANN" in solidOptim
+  - improved debugging output
 
 o explore potential relationships to package "dtw" (dynamic time warping)
 

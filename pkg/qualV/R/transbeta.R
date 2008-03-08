@@ -60,6 +60,7 @@ solidOptim <- function (p0, f, mi, ma, n = 100, debug = FALSE) {
   env <- environment()
   li <- lapply(1:n, function(i) {
     cat(".")
+    if(i %% 20 == 0) cat("\n")
     if (stp) return (list(value = Inf, convergence = 11))
     withCallingHandlers(
       tr <- try ({
@@ -69,14 +70,15 @@ solidOptim <- function (p0, f, mi, ma, n = 100, debug = FALSE) {
           optim(p0, f, method = "L-BFGS-B", lower = mi, upper = ma) 
         } else {
           p <- runif(length(p0)) * (ma - mi) + mi
-          if(i%%3 == 0)
+          if(i %% 3 == 0)
             optim(p, f, method = "Nelder-Mead")
-          else if (i==5)
-            optim(p, f, method = "SANN", control = list(maxit = 5000))
+          #else if (i==5)
+          #  optim(p, f, method = "SANN", control = list(maxit = 5000))
           else
             optim(p, f, method = "L-BFGS-B", lower = mi, upper = ma)
         }
-      }, silent = TRUE), interrupt = function (e) assign("stp", TRUE, envir = env))
+      }, silent = TRUE), interrupt = function (e) assign("stp", TRUE, envir = env)
+    )
 #    optim(runif(length(p0)) * (ma - mi) + mi, f, method = "L-BFGS-B", lower = mi, upper = ma) })
     if (inherits(tr, "try-error")) {
       if (debug) print(tr)
@@ -86,7 +88,7 @@ solidOptim <- function (p0, f, mi, ma, n = 100, debug = FALSE) {
     nopt <- tr$value
     if (is.finite(nopt) && nopt < opt) {
       assign("opt", nopt, envir = env) 
-      if (debug) cat("=>", opt)
+      if (debug) cat("=>", opt, "\n")
     }
     tr
   })
@@ -190,16 +192,16 @@ timeTransME <- function(o, p,
                         MEtype = c("dissimilarity", "normalized"),
                         trials = 100,
                         debug = FALSE) {
-  if (is.character(ME))
-    ME <- generalME(method = ME)
-  O <- xy.coords(o, o.t)
-  P <- xy.coords(p, p.t)
-  o <- O$x
-  o.t <- O$y
-  p <- P$x
-  p.t <- P$y
-  time <- match.arg(time)
-  type <- match.arg(type)
+
+  if (is.character(ME)) ME <- generalME(method = ME)
+  O    <- xy.coords(o, o.t)
+  P    <- xy.coords(p, p.t)
+  o    <- O$x
+  o.t  <- O$y
+  p    <- P$x
+  p.t  <- P$y
+  time   <- match.arg(time)
+  type   <- match.arg(type)
   MEtype <- match.arg(MEtype)
   if (length(o) == 0 || length(o.t) != length(o))
     stop ("observations not specified")
@@ -209,26 +211,32 @@ timeTransME <- function(o, p,
   # transform time scales into interval [0, 1] and approximate functions
   o.f <- approxfun(o.t, o, rule = 2)  
   p.f <- approxfun(p.t, p, rule = 2)
-  # define verbouse error function
+  # define verbose error function
   cll <- match.call()
   error <- function (timep) {
-    x <- sort(c(o.t, trans(p.t, timep, interval, inv = TRUE)))
-    xtr<- trans(x, timep, interval)
+    x   <- sort(c(o.t, trans(p.t, timep, interval, inv = TRUE)))
+    ## thpe: bug! x may exceed interval !!!
+    x <- ifelse(x > interval[2], interval[2],       # fix
+           ifelse(x < interval[1], interval[1], x)  # may be necessary, too
+         )
+    xtr <- trans(x, timep, interval)
+    
     timeme <- timeME(x * timeScale, xtr * timeScale, type = timeMEtype)
     timemeReference <- switch(timeMEtype,
                               dissimilarity = timeME(x * timeScale,
                                 xtr * timeScale, type = "reference"),
-                              normalized = 1, reference = 1)
+                              normalized    = 1, 
+                              reference     = 1)
     yo <- o.f(x)
     yp <- p.f(xtr)
     has <- !(is.na(yo) | is.na(yp))
-    x <- x[has]
+    x  <- x[has]
     yo <- yo[has]
     yp <- yp[has]
     me <- ME(yo, yp, type = MEtype)
     meref <- switch(MEtype,
                     dissimilarity = ME(yo, yp, type = "reference"),
-                    normalized = 1)
+                    normalized    = 1)
     structure(
       list(criterium = me + timeMEFactor * timeme,
            reference = meref, #timeMEFactor * timemeReference,
@@ -246,6 +254,10 @@ timeTransME <- function(o, p,
   # define simplified error function 
   quickError <- function(timep) {
     x <- c(o.t, trans(p.t, timep, interval, inv = TRUE))
+    ## thpe: bug?? x may exceed interval see error() above
+    x <- ifelse(x > interval[2], interval[2],       # fix
+           ifelse(x < interval[1], interval[1], x)  # may be necessary, too
+         )
     xtr <- trans(x, timep, interval)
     ME(o.f(x), p.f(xtr), type = MEtype) +
       timeMEFactor * timeME(x * timeScale, xtr * timeScale, type = timeMEtype)
