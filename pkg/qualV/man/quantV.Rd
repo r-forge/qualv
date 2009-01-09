@@ -63,23 +63,23 @@ RSMSGE(o, p, type = "dissimilarity")
 \arguments{
   \item{o}{vector of observed values}
   \item{p}{vector of corresponding predicted values}
-  \item{type}{one of \code{c("dissimilarity", "normalized",
-      "similarity",\ "reference", "formula")}, for the dissimilarity
+  \item{type}{one of \code{"dissimilarity"}, \code{"normalized"},
+      \code{"similarity"}, \code{"reference"}, \code{"formula"}, for the dissimilarity
     measure, the normalized dissimilarity measure, the similarity
     measure, or the formula for the normalized measure. For
     \code{generalME} it is additionally possible to specify
     \code{"function"} for getting the corresponding function and
     \code{"name"} for getting the name of the function.
   }
-  \item{ignore}{specifies which aspects should be ignored: "raw"
-    compares original values, "centered" removes differences in mean,
-    "scaled" ignores scaling, "ordered" indicates the use of the ordinal
-    geometry only.}
+  \item{ignore}{specifies which aspects should be ignored: \code{"raw"}
+    compares original values, \code{"centered"} removes differences in mean,
+    \code{"scaled"} ignores scaling, \code{"ordered"} indicates the use of the
+    ordinal geometry only.}
   \item{geometry}{indicating the geometry to be used for the data and
-    the output, "real" corresponds to arithmetic differences and means,
-    "logarithmic" to handling relative data on a logarithmic scale,
-    "geometric" to geometric means and differences and "ordinal" to a
-    pure ordinal treatment.}
+    the output, \code{"real"} corresponds to arithmetic differences and means,
+    \code{"logarithmic"} to handling relative data on a logarithmic scale,
+    \code{"geometric"} to geometric means and differences and \code{"ordinal"}
+    to a pure ordinal treatment.}
   \item{measure}{indicates how distances should be measured: as mean
     absolute distances like in MAD, as squared distances like in a
     variance, or as the root of mean squared distances like in sd.}
@@ -127,21 +127,23 @@ corresponding to
 \code{[Root] [Centered | Scaled] Mean [Squared | Absolute]}
 \cr
 \code{[Logarithmic, Geometric, Ordinal] Error}
-\item{Root}{is used together with squared errors to indicate, that a
-  root is applied to the mean.}
-\item{Centered}{indicates that an additive constant is allowed.}
-\item{Scaled}{indicates that a scaling of the predictive sequence is
-  allowed. Scaled implies centered for real scale.}
-\item{Squared}{indicates that squared error is used.} 
-\item{Absolute}{indicates that absolute error is used.}
-\item{Logarithmic}{indicates that the error is calculated based on the
-  logarithms of the values. This is useful for data on a relative
-  scale.}
-\item{Geometric}{indicates that the result is to be understood as a
-  factor, similar to a geometric mean.}
-\item{Ordinal}{indicates that only the order of the observations is
-  taken into account by analyzing the data by ranks scaled to the
-  interval [0, 1].}
+\describe{
+  \item{Root}{is used together with squared errors to indicate, that a
+    root is applied to the mean.}
+  \item{Centered}{indicates that an additive constant is allowed.}
+  \item{Scaled}{indicates that a scaling of the predictive sequence is
+    allowed. Scaled implies centered for real scale.}
+  \item{Squared}{indicates that squared error is used.}
+  \item{Absolute}{indicates that absolute error is used.}
+  \item{Logarithmic}{indicates that the error is calculated based on the
+    logarithms of the values. This is useful for data on a relative
+    scale.}
+  \item{Geometric}{indicates that the result is to be understood as a
+    factor, similar to a geometric mean.}
+  \item{Ordinal}{indicates that only the order of the observations is
+    taken into account by analyzing the data by ranks scaled to the
+    interval [0, 1].}
+}
 
 The mean errors for squared error measures are
 based on the number of degrees of freedom of the residuals.

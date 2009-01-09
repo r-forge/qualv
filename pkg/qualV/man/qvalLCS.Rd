@@ -85,11 +85,12 @@ The result is an object of type \code{qvalLCS} with the following entries:
   Gaussian curve as kernel. The bandwidth is automatically selected
   based on the plug-in methodology (\code{dpill}, see package
   \pkg{KernSmooth} for more details).
-
-\item{print.qvalLCS}{prints only the requested value, without
-  additional information.}
-\item{summary.qvalLCS}{prints all the additional information.}
-\item{plot.qvalLCS}{shows a picture visualizing a \code{LCS}.}
+  \describe{
+    \item{print.qvalLCS}{prints only the requested value, without
+      additional information.}
+    \item{summary.qvalLCS}{prints all the additional information.}
+    \item{plot.qvalLCS}{shows a picture visualizing a \code{LCS}.}
+  }
 }
 
 \references{Agrawal R., K. Lin., H. Sawhney and K. Shim (1995).
