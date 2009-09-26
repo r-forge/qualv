@@ -13,7 +13,7 @@ transSimplex <- function (x, p, interval = c(0, 1),
     fun <- approxfun(y, t, rule = 2)
   else
     fun <- approxfun(t, y, rule = 2)
-  fun(x)  
+  fun(x)
 }
 
 Bernstein <- function (x, N) {
@@ -67,7 +67,7 @@ solidOptim <- function (p0, f, mi, ma, n = 100, debug = FALSE) {
         if (i==1) {
           optim(p0, f)
         } else if (i==2) {
-          optim(p0, f, method = "L-BFGS-B", lower = mi, upper = ma) 
+          optim(p0, f, method = "L-BFGS-B", lower = mi, upper = ma)
         } else {
           p <- runif(length(p0)) * (ma - mi) + mi
           if(i %% 3 == 0)
@@ -87,7 +87,7 @@ solidOptim <- function (p0, f, mi, ma, n = 100, debug = FALSE) {
     if (tr$convergence > 2) tr$value <- Inf
     nopt <- tr$value
     if (is.finite(nopt) && nopt < opt) {
-      assign("opt", nopt, envir = env) 
+      assign("opt", nopt, envir = env)
       if (debug) cat("=>", opt, "\n")
     }
     tr
@@ -178,7 +178,7 @@ timeTransME <- function(o, p,
                         measure = "mad",
                         type = c("dissimilarity", "normalized",
                                  "similarity", "reference"),
-                        interval = range(c(o.t, p.t)), 
+                        interval = range(c(o.t, p.t)),
                         time = c("transformed", "fixed"),
                         trans = transBeta,
                         p0 = eval(formals(trans)$p0),
@@ -207,9 +207,9 @@ timeTransME <- function(o, p,
     stop ("observations not specified")
   if (length(p) == 0 || length(p.t) != length(p))
     stop ("model not specified")
-  
+
   # transform time scales into interval [0, 1] and approximate functions
-  o.f <- approxfun(o.t, o, rule = 2)  
+  o.f <- approxfun(o.t, o, rule = 2)
   p.f <- approxfun(p.t, p, rule = 2)
   # define verbose error function
   cll <- match.call()
@@ -220,12 +220,12 @@ timeTransME <- function(o, p,
            ifelse(x < interval[1], interval[1], x)  # may be necessary, too
          )
     xtr <- trans(x, timep, interval)
-    
+
     timeme <- timeME(x * timeScale, xtr * timeScale, type = timeMEtype)
     timemeReference <- switch(timeMEtype,
                               dissimilarity = timeME(x * timeScale,
                                 xtr * timeScale, type = "reference"),
-                              normalized    = 1, 
+                              normalized    = 1,
                               reference     = 1)
     yo <- o.f(x)
     yp <- p.f(xtr)
@@ -251,7 +251,7 @@ timeTransME <- function(o, p,
            trans = trans
           ), class = "timeTransME")
   }
-  # define simplified error function 
+  # define simplified error function
   quickError <- function(timep) {
     x <- c(o.t, trans(p.t, timep, interval, inv = TRUE))
     ## thpe: bug?? x may exceed interval see error() above
@@ -265,7 +265,7 @@ timeTransME <- function(o, p,
   if (time == "LCS") {
     stop ("LCS not yet implemented in timetransME")
   } else if(time == "fixed") {
-    erg <- error(p0) 
+    erg <- error(p0)
   } else {
   # transformation
   # error function
@@ -305,9 +305,9 @@ plot.timeTransME <- function(x, y = NULL, ..., col.obs = "black",
   lines(x$x, x$yp, type = "b", col = col.map)
 }
 
-print.compareME <- function (x, ..., digits=3) {
+print.compareME <- function (x, ..., digits = 3) {
   oo <- options("digits")
-  options("digits"=digits)
+  options("digits" = digits)
   print(unclass(x))
   options(oo)
 }

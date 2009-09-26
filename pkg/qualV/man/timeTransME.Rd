@@ -105,7 +105,7 @@ parameter.}
          optimization step is printed.
       }
    \item{\dots}{further parameters to be passed to
-      \code{\link[base]{plot}}}
+      \code{\link{plot}}}
    \item{col.obs}{color to plot the observations}
    \item{col.pred}{color to plot the predictions}
    \item{col.map}{color to plot the mapped predictions}

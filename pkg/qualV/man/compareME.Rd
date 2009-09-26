@@ -18,33 +18,35 @@ compareME(o, p,
           type     = "normalized",
           time     = "fixed", ..., col.vars=c("time", "ignore")
          )
-\method{print}{compareME}(object, ..., digits = 3)
+\method{print}{compareME}(x, ..., digits = 3)
 \method{summary}{compareME}(object, ...)
 }
 \arguments{
-  \item{o}{vector of observed values}
-  \item{p}{vector of predicted values}
-  \item{o.t}{vector of observation times}
-  \item{p.t}{vector of times for predicted values}
+  \item{o}{vector of observed values,}
+  \item{p}{vector of predicted values,}
+  \item{o.t}{vector of observation times,}
+  \item{p.t}{vector of times for predicted values,}
   \item{ignore}{a subset of \code{c("raw", "centered", "scaled",
       "ordered")} as defined in \code{\link{generalME}} to specify
-    the aspects of the data to be ignored.}
+    the aspects of the data to be ignored,}
   \item{geometry}{a subset of \code{c("real", "logarithmic", "geometric",
       "ordinal")} as defined in \code{\link{generalME}} to specify the
-    geometry of the observed data.}
+    geometry of the observed data,}
   \item{measure}{a subset of \code{c("mad", "var", "sd")} to specify the
-    type of error to be measured.}
+    type of error to be measured,}
   \item{type}{a subset of \code{c("dissimilarity", "normalized",
       "similarity", "reference")} as defined in \code{\link{generalME}}
-    to specify the type of deviance measure to be used.}
+    to specify the type of deviance measure to be used,}
   \item{time}{a subset of \code{c("fixed", "transform")}, indicates wether
     the time should actually be transformed. If this argument and the
     time arguments are missing the comparison is based on values only
     without time matching.}
-  \item{...}{further arguments passed to \code{\link{timeTransME}} }
+  \item{...}{further arguments passed to \code{\link{timeTransME}},}
   \item{col.vars}{a subset of \code{c("ignore", "geometry", "measure",
-      "time")} to be displayed in the columns of the resulting \code{ftable}.}
-  \item{digits}{number of significant digits displayed}
+      "time")} to be displayed in the columns of the resulting \code{ftable},}
+  \item{digits}{number of significant digits displayed,}
+  \item{x, object}{objects of class \code{compareME}.}
+  
 }
 
 \value{
