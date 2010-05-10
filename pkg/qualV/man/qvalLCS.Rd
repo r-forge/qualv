@@ -106,7 +106,9 @@ The result is an object of type \code{qvalLCS} with the following entries:
 
   Jachner, S., K.G. v.d. Boogaart, T. Petzoldt (2007) Statistical methods
   for the qualitative assessment of dynamic models with time delay (R
-  package qualV), in preparation  
+  package qualV), Journal of Statistical Software, 22(8), 1--30.
+  URL \url{http://www.jstatsoft.org/v22/i08/}. 
+
 }
 
 \seealso{

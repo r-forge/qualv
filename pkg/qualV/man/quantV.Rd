@@ -153,10 +153,11 @@ based on the number of degrees of freedom of the residuals.
 \references{
   Mayer, D. G. and Butler, D. G. (1993) Statistical
   Validation. Ecological Modelling, 68, 21-32.
-  
+ 
   Jachner, S., K.G. v.d. Boogaart, T. Petzoldt (2007) Statistical methods
   for the qualitative assessment of dynamic models with time delay (R
-  package qualV), in preparation
+  package qualV), Journal of Statistical Software, 22(8), 1--30.
+  URL \url{http://www.jstatsoft.org/v22/i08/}. 
 }
 
 \seealso{\code{\link{EF}}, \code{\link{GRI}}, \code{\link{compareME}}}

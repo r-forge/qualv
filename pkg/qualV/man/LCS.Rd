@@ -27,18 +27,22 @@
   \code{LLCS} over maximum length of \code{'a'} and \code{'b'}.
 }
 
-\references{Wagner, R. A. and Fischer, M. J. (1974) The String-to-String
-  Correction Problem. Journal of the ACM, 21, 168-173.
+\references{
+  Wagner, R. A. and Fischer, M. J. (1974) The String-to-String
+    Correction Problem. Journal of the ACM, 21, 168-173.
 
-Paterson, M. and Dancík, V. (1994) Longest Common Subsequences. Mathematical
-  Foundations of Computer Science, 841, 127-142.
+  Paterson, M. and Dancík, V. (1994) Longest Common
+    Subsequences. Mathematical Foundations of Computer Science, 841,
+    127-142.
 
-Gusfield, D. (1997) Algorithms on Strings, Trees, and Sequences: Computer
-  Science and Computational Biology. Cambridge University Press, England, ISBN 0-521-58519-8.
+  Gusfield, D. (1997) Algorithms on Strings, Trees, and Sequences:
+    Computer Science and Computational Biology. Cambridge University
+    Press, England, ISBN 0-521-58519-8.
 }
 
-\note{Basing on the most prominent but simple calculation scheme this algorithm is
-  not very efficient with respect to its time and memory requirements.}
+\note{Basing on the most prominent but simple calculation scheme this
+  algorithm is not very efficient with respect to its time and memory
+  requirements.}
 
 \examples{
 # direct use

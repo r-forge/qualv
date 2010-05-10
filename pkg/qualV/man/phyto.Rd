@@ -23,7 +23,7 @@ sim
           \item{\code{y:}}{observed biovolume (mg/L)}
        }}  
   \item{\code{sim:}}{A data frame of predicted phytoplankton concentration
-    in Bautzen reservoir 1994 (TU Dresden, Department of Hydrobiology,
+    in Bautzen reservoir 1994 (TU Dresden, Institute of Hydrobiology,
     workgroup Limnology) with the elements:
        \describe{
           \item{\code{t:}}{time code}

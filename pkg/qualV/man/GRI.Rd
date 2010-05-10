@@ -28,9 +28,9 @@
 \examples{
 # a constructed example
 x <- seq(0, 2*pi, 0.1)
-y <- 5 + sin(x)           # a process
-o <- y + rnorm(x, sd=0.2) # observation with random error
-p <- y + 0.1              # simulation with systematic bias
+y <- 5 + sin(x)             # a process
+o <- y + rnorm(x, sd = 0.2) # observation with random error
+p <- y + 0.1                # simulation with systematic bias
 
 plot(x, o); lines(x, p)
 GRI(o, p)

@@ -14,16 +14,22 @@
 
 \value{\item{EF}{efficiency factor}}
 
-\details{Two time series are compared. \code{'EF'} is an overall measure of
-  similarity between fitted and observed values. Any model giving a negative value
-  cannot be recommended, whereas values close to one indicate a
-  'near-perfect' fit.}
+\details{Two time series are compared. \code{'EF'} is an overall measure
+  of similarity between fitted and observed values. Any model giving a
+  negative value cannot be recommended, whereas values close to one
+  indicate a 'near-perfect' fit.}
 
-\references{Nash, J. E. and Sutcliffe, J. V. (1970) River flow forecasting through conceptual models part I - A discussion of principles. Journal of Hydrology, 10, 282-290.
+\references{
 
-Mayer, D. G. and Butler, D. G. (1993) Statistical Validation. Ecological Modelling, 68, 21-32.}
+  Nash, J. E. and Sutcliffe, J. V. (1970) River flow forecasting through
+  conceptual models part I - A discussion of principles. Journal of
+  Hydrology, 10, 282-290.
 
-\seealso{\code{\link{MAE}}, \code{\link{MSE}}, \code{\link{MAPE}}, \code{\link{GRI}}}
+  Mayer, D. G. and Butler, D. G. (1993) Statistical
+  Validation. Ecological Modelling, 68, 21-32.}
+
+\seealso{\code{\link{MAE}}, \code{\link{MSE}}, \code{\link{MAPE}},
+\code{\link{GRI}}}
 
 \examples{
 # a constructed example
