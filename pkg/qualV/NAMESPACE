@@ -1,3 +1,5 @@
+useDynLib(qualV, .registration = TRUE)
+
 import("KernSmooth")
 
 exportPattern(".*M.*E")
@@ -23,3 +25,6 @@ export(
        "print.timeTransME",
        "summary.timeTransME"
        )
+
+## for testing only
+export("LCSc")

@@ -48,7 +48,7 @@
 # direct use
 a <- c("b", "c", "a", "b", "c", "b")
 b <- c("a", "b", "c", "c", "b")
-LCS(a, b)
+print(LCS(a, b))
 
 # a constructed example
 x <- seq(0, 2 * pi, 0.1)  # time
