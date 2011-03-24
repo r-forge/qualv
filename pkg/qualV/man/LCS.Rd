@@ -3,7 +3,9 @@
 \title{Algorithm for the Longest Common Subsequence Problem}
 
 \description{Determines the longest common subsequence of two strings.}
-\usage{LCS(a, b)}
+\usage{
+LCS(a, b)
+}
 
 \arguments{
   \item{a}{vector (numeric or character), missing values are not accepted}
@@ -31,7 +33,7 @@
   Wagner, R. A. and Fischer, M. J. (1974) The String-to-String
     Correction Problem. Journal of the ACM, 21, 168-173.
 
-  Paterson, M. and Dancík, V. (1994) Longest Common
+  Paterson, M. and Dancik, V. (1994) Longest Common
     Subsequences. Mathematical Foundations of Computer Science, 841,
     127-142.
 
@@ -40,9 +42,8 @@
     Press, England, ISBN 0-521-58519-8.
 }
 
-\note{Basing on the most prominent but simple calculation scheme this
-  algorithm is not very efficient with respect to its time and memory
-  requirements.}
+\note{\code{LCS} is now using a C version of the algorithm provided by
+  Dominik Reusser.}
 
 \examples{
 # direct use

@@ -1,6 +1,6 @@
 Package: qualV
 Title: Qualitative Validation Methods
-Version: 0.2-6
+Version: 0.3
 Author: K.G. van den Boogaart, Stefanie Rost and Thomas Petzoldt
 Description: Qualitative methods for the validation of models.
 Maintainer: Thomas Petzoldt <thomas.petzoldt@tu-dresden.de>

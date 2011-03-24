@@ -1,58 +1,58 @@
 
 ## Interface to C version of LCS provided by Dominik Reusser
 
-LCSc <- function(a,b){
-    stopifnot(is.character(a),is.character(b))
-    if(any(is.na(c(a,b)))){
+LCS <- function(a, b){
+    stopifnot(is.character(a), is.character(b))
+    if(any(is.na(c(a, b)))){
        out <- list(a = a, b = b, LLCS = NA, LCS = NA, QSI = NA, va = NA, vb = NA)
     } else {
-       out <- .Call("lcs", as.character(a), as.character(b), max(nchar(c(a,b))), PACKAGE="qualV")
+       out <- .Call("lcs", as.character(a), as.character(b), max(nchar(c(a, b))), PACKAGE="qualV")
     }
     invisible(out)
 }
 
 
-LCS <- function (a, b) {
-  m <- length(a)
-  n <- length(b)
-  if (m == 0 || n == 0) stop ("vector of length zero")
-    
-  # creates a table
-  M <- matrix(nrow = m + 1, ncol = n + 1)
-  M[, 1] <- 0
-  M[1, ] <- 0
-    
-  # fills the table
-  for (i in 2:(m + 1)) {
-    for (j in 2:(n + 1)) {
-      if (a[i - 1] == b[j - 1]) { M[i, j] <- M[i - 1, j - 1] + 1 }
-      else { M[i, j] <- max(c(M[i, j - 1], M[i - 1, j])) }
-    }
-  }
-    
-  # length of the longest common subsequence
-  LLCS <- M[m + 1, n + 1]
-    
-  # determines one possible longest common subsequence
-  # by means of "trace-back" by the table filled out
-  i <- m + 1; j <- n + 1
-  LCS <- va <- vb <- NULL
-  while (i > 1 & j > 1) {
-    if (M[i, j] == M[i - 1, j - 1] + 1 & a[i - 1] == b[j - 1]) {
-      LCS <- c(a[i - 1], LCS)
-      va <- c(i - 1, va); vb <- c(j - 1, vb)
-      i <- i - 1; j <- j - 1
-    }
-    else {
-      if (M[i - 1, j] > M[i, j - 1]) { i <- i - 1 }
-      else { j <- j - 1 }
-    } 
-  }
-    
-  # calculates the quality similarity index
-  QSI <- round(LLCS / max(m, n), digits = 2)
-  invisible(list(a = a, b = b, LLCS = LLCS, LCS = LCS, QSI = QSI , va = va, vb = vb))
-}
+#LCS <- function (a, b) {
+#  m <- length(a)
+#  n <- length(b)
+#  if (m == 0 || n == 0) stop ("vector of length zero")
+#
+#  # creates a table
+#  M <- matrix(nrow = m + 1, ncol = n + 1)
+#  M[, 1] <- 0
+#  M[1, ] <- 0
+#
+#  # fills the table
+#  for (i in 2:(m + 1)) {
+#    for (j in 2:(n + 1)) {
+#      if (a[i - 1] == b[j - 1]) { M[i, j] <- M[i - 1, j - 1] + 1 }
+#      else { M[i, j] <- max(c(M[i, j - 1], M[i - 1, j])) }
+#    }
+#  }
+#
+#  # length of the longest common subsequence
+#  LLCS <- M[m + 1, n + 1]
+#
+#  # determines one possible longest common subsequence
+#  # by means of "trace-back" by the table filled out
+#  i <- m + 1; j <- n + 1
+#  LCS <- va <- vb <- NULL
+#  while (i > 1 & j > 1) {
+#    if (M[i, j] == M[i - 1, j - 1] + 1 & a[i - 1] == b[j - 1]) {
+#      LCS <- c(a[i - 1], LCS)
+#      va <- c(i - 1, va); vb <- c(j - 1, vb)
+#      i <- i - 1; j <- j - 1
+#    }
+#    else {
+#      if (M[i - 1, j] > M[i, j - 1]) { i <- i - 1 }
+#      else { j <- j - 1 }
+#    }
+#  }
+#
+#  # calculates the quality similarity index
+#  QSI <- round(LLCS / max(m, n), digits = 2)
+#  invisible(list(a = a, b = b, LLCS = LLCS, LCS = LCS, QSI = QSI , va = va, vb = vb))
+#}
 
 qvalLCS <- function (o, p,
                      o.t = seq(0, 1, length.out = length(o)),
@@ -69,7 +69,7 @@ qvalLCS <- function (o, p,
 
   obs <- data.frame(x = o.t, y = o)
   sim <- data.frame(x = p.t, y = p)
-  
+
   if (use == "both" || use == "obs") {
     o.bw  <- dpill(o.t, o)
     n     <- max(tail(o.t, n = 1) - o.t[1] + 1, length(o.t))
@@ -94,9 +94,9 @@ qvalLCS <- function (o, p,
   # determine features
   obsf <- f(obs$x, obs$y)
   simf <- f(sim$x, sim$y)
-  
+
   lcs  <- LCS(obsf, simf)
-  
+
   erg <- structure(
            list(smooth = use,
                 feature = feature,
@@ -114,7 +114,7 @@ qvalLCS <- function (o, p,
 
 print.qvalLCS <- function (x, ...) {
   erg <- unclass(x[c("lcs")])
-  print(paste("QSI:", erg$lcs$QSI)) 
+  print(paste("QSI:", erg$lcs$QSI))
 }
 
 summary.qvalLCS <- function (object, ...) {
@@ -138,7 +138,7 @@ plot.qvalLCS <- function (x, y = NULL, ...,
                           xlim = range(c(x$obs$x, x$sim$x)),
                           ylim = range(c(x$obs$y, x$sim$y)),
                           xlab = "time",
-                          ylab = " ",             
+                          ylab = " ",
                           col.obs = "black",
                           col.pred = "red",
                           plot.title = paste("LLCS =", x$lcs$LLCS, ", QSI =", x$lcs$QSI),
@@ -148,15 +148,15 @@ plot.qvalLCS <- function (x, y = NULL, ...,
   leg.pch <- NULL
   leg.col <- NULL
   leg.name <- c("measurement")
-  
+
   ca <- plot.feature(x$obsf, x$lcs$va)
   cb <- plot.feature(x$simf, x$lcs$vb)
-  
+
   plot(x$sim$x, x$sim$y, xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab,
        type = "l", ..., col = col.pred, lwd = 2)
   lines(x$obs$x, x$obs$y, lwd = 2, col = col.obs)
   title(main = plot.title)
-    
+
   if (x$smooth == "both" || x$smooth == "obs") {
     points(x$o$x, x$o$y, lwd=2, pch=2, col=col.obs)
     leg.lty <- c(leg.lty, 0)
@@ -179,10 +179,10 @@ plot.qvalLCS <- function (x, y = NULL, ...,
   leg.pch <- c(leg.pch, NA, 21)
   leg.col <- c(leg.col, col.pred, col.pred)
   leg.name <- c(leg.name, "LCS segments of simulation")
-  
+
   points(x$obs$x[x$lcs$va], x$obs$y[x$lcs$va], pch = 21, bg = 1, col = ca)
   points(x$sim$x[x$lcs$vb], x$sim$y[x$lcs$vb], pch = 21, bg = 2, col = cb)
-  
+
   if (legend == TRUE) {
     usr <- par("usr")
     legend(usr[1],usr[4], leg.name, lty = leg.lty,
