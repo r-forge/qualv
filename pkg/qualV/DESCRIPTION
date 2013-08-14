@@ -1,7 +1,11 @@
 Package: qualV
 Title: Qualitative Validation Methods
-Version: 0.3
-Author: K.G. van den Boogaart, Stefanie Rost and Thomas Petzoldt
+Version: 0.3-1
+Authors@R: c(person("K. Gerald", "van den Boogaart", role = c("aut", "ths")),
+             person("Rost", "Stefanie", role = "aut"),
+             person("Thomas", "Petzoldt", role = c("aut", "ths", "cre"),
+                     email = "Thomas.Petzoldt@TU-Dresden.de"))
+Author: K.G. van den Boogaart and Stefanie Rost and Thomas Petzoldt
 Description: Qualitative methods for the validation of models.
 Maintainer: Thomas Petzoldt <thomas.petzoldt@tu-dresden.de>
 Depends: R (>= 2.0.0), KernSmooth
