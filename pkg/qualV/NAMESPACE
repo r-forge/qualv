@@ -25,3 +25,12 @@ export(
        "print.timeTransME",
        "summary.timeTransME"
        )
+
+S3method(plot, qvalLCS)
+S3method(plot, timeTransME)
+S3method(print, compareME)
+S3method(print, qvalLCS)
+S3method(print, timeTransME)
+S3method(summary, compareME)
+S3method(summary, qvalLCS)
+S3method(summary, timeTransME)

@@ -1,13 +1,11 @@
-o fix bug in dontrun/plot examples of timeTransME (3 examples on help page)
-  - was: bug in timeTransME  -- fixed --
+Ideas for further development
+=============================
 
 o rebirth of "hBandwith" and "intervalTree" (from qualV 0.1-1)
 
 o split .R files into smaller ones identified by function names
 
 o create plot function for "plain" LCS
-
-o implement faster LCS algorithm
 
 o improve solidOptim
   - ThPe (2008-03-08): disabled use of "SANN" in solidOptim
@@ -16,8 +14,6 @@ o improve solidOptim
 o explore potential relationships to package "dtw" (dynamic time warping)
 
 o pass additional parameters (feature-parameters, manual bandwidth) to qvalLCS
-
-OR, possibly better ???
 
 o allow user-defined function to be passed to qvalLCS
 
