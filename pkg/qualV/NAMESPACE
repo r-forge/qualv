@@ -1,6 +1,6 @@
 useDynLib(qualV, .registration = TRUE)
 
-import("KernSmooth")
+import(KernSmooth, graphics, grDevices, stats, utils)
 
 exportPattern(".*M.*E")
 export(

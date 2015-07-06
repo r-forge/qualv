@@ -8,6 +8,7 @@ Authors@R: c(person("K. Gerald", "van den Boogaart", role = c("aut", "ths")),
 Description: Qualitative methods for the validation of models.
 Maintainer: Thomas Petzoldt <thomas.petzoldt@tu-dresden.de>
 Depends: R (>= 2.0.0), KernSmooth
+Imports: graphics, grDevices, stats, utils
 License: GPL (>= 2)
 URL: http://qualV.R-Forge.R-Project.org/
 
