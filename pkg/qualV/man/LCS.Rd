@@ -22,11 +22,12 @@ LCS(a, b)
   \item{vb}{one possible \code{LCS} of vector \code{'b'}}
 }
 
-\details{A longest common subsequence (\code{LCS}) is a common subsequence 
+\details{A longest common subsequence (\code{LCS}) is a common subsequence
   of two strings of maximum length. The \code{LCS} Problem consists of
   finding a \code{LCS} of two given strings and its length
-  (\code{LLCS}). The \code{QSI} is computed by division of the
-  \code{LLCS} over maximum length of \code{'a'} and \code{'b'}.
+  (\code{LLCS}). A qualitative similarity index \code{QSI} is
+  computed by division of the \code{LLCS} over maximum length of
+  \code{'a'} and \code{'b'}.
 }
 
 \references{

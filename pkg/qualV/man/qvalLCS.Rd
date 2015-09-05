@@ -34,8 +34,8 @@ before validation, default no smoothing \code{"none"} is set,
 \code{"both"} observed and predicted values will be smoothed,
 \code{"obs"} only observed, and \code{"sim"} only simulated values will
 be smoothed.}
-   \item{feature}{one of \code{"f.slope", "f.curve", "f.steep",
-       "f.level"} as defined in \code{\link{features}} to divide the
+   \item{feature}{one of \code{"f.slope"}, \code{"f.curve"}, \code{"f.steep"},
+       \code{"f.level"} as defined in \code{\link{features}} to divide the
      time series into interval sequences of these feature. As default
      the first derivative \code{"f.slope"} is used.}
    \item{x}{a result from a call of \code{qvalLCS}}

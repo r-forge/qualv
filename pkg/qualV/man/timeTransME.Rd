@@ -17,7 +17,7 @@ timeTransME(o, p,
             measure  = "mad",
             type     = c("dissimilarity", "normalized",
                          "similarity", "reference"),
-            interval = range(c(o.t, p.t)), 
+            interval = range(c(o.t, p.t)),
             time     = c("transformed", "fixed"),
             trans    = transBeta,
             p0       = eval(formals(trans)$p0),
@@ -71,7 +71,7 @@ timeTransME(o, p,
     the parameters of the transformation.}
   \item{pmax}{number or vector providing the minimal allowed values for
     the parameters of the transformation.}
-  
+
   \item{timeME}{The \code{timeTransME} minimizes a weighted sum of the
     deformation of the time scale and of the data values
     according to
@@ -158,10 +158,10 @@ The result is an object of type \code{timeTransME} with the following entries:
   simulation, i.e. to run the time faster or slower, and to compare the
   performance before and after the transformation. The applied
   transformation function must be monotonic. \code{timeTransME}
-  minimizes the joint criterium
-\code{ME(o(x), p(trans(x, timep)), MEtype) +
-timeMEFactor * timeME(x * timeScale, trans(x, timep) * timeScale, timeMEtype)} to
-find a best fitting time transformation.
+  minimizes the joint criterium\cr
+  \code{ME(o(x), p(trans(x, timep)), MEtype) +}\cr
+  \code{timeMEFactor * timeME(x * timeScale, trans(x, timep) * timeScale, timeMEtype)}
+  to find a best fitting time transformation.
 \describe{
   \item{\code{print.timeTransME}}{prints only the requested value, without
     additional information.}
@@ -218,7 +218,7 @@ bbobs    <- dpill(obs$t, obs$y)
 n        <- diff(range(obs$t)) + 1
 obss     <- ksmooth(obs$t, obs$y, kernel = "normal", bandwidth = bbobs,
             n.points = n)
-names(obss) <- c("t", "y")            
+names(obss) <- c("t", "y")
 obss     <- as.data.frame(obss)[match(sim$t, obss$t), ]
 
 tt       <- timeTransME(obss$y, sim$y, obss$t, sim$t, ME = SMSE,
