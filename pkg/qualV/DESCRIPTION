@@ -5,7 +5,14 @@ Authors@R: c(person("K. Gerald", "van den Boogaart", role = c("aut", "ths")),
              person("Stefanie", "Rost", role = "aut"),
              person("Thomas", "Petzoldt", role = c("aut", "ths", "cre"),
                      email = "thomas.petzoldt@tu-dresden.de"))
-Description: Qualitative methods for the validation of models.
+Description: Qualitative methods for the validation of dynamic models.
+It contains (i) an orthogonal set of deviance measures for absolute,
+relative and ordinal scale and (ii) approaches accounting for time
+shifts. The first approach transforms time to take time delays and speed
+differences into account. The second divides the time series into
+interval units according to their main features and finds the longest
+common subsequence (LCS) using a dynamic programming algorithm.
+
 Maintainer: Thomas Petzoldt <thomas.petzoldt@tu-dresden.de>
 Depends: R (>= 2.0.0), KernSmooth
 Imports: graphics, grDevices, stats, utils

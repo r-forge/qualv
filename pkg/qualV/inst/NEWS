@@ -1,23 +1,23 @@
+0.3.2
+ o NAMESPACE imports now standard packages
+ o documentation updates
+
 0.3.1
  o adaptations to recent versions of R
 
 0.2-6
-
  o C version of LCS algorithm provided by Dominik Reusser
 
 0.2-5
-
  o documentation fixes
  o maintainer is now Thomas Petzoldt
 
 0.2-4
-
  o moved to R-Forge
  o added CITATION
  o new agenda for future developments (ToDo.txt)
 
 0.2-3
-
  o fixed: encoding issue in .Rd files
  o fixed: break of package check due to fail of numerical optimization  
           in examples of timeTransME
@@ -25,23 +25,18 @@
  o G.v.d. Boogaart is now package maintainer
 
 0.2-2
-
  o generic print functions added
 
 0.2-1
-
  o added NEWS and THANKS
 
 0.2
-
  o code and documentation improvements
  o removed from .Rd: "## The function is currently defined as ..."
 
 0.1-1
-
  o documentation improvements
 
 
 0.1
-
  o initial version
