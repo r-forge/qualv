@@ -1,6 +1,6 @@
 \name{EF}
 \alias{EF}
-\title{Efficiency Factor as Suggested by Nash \& Sutcliffe}
+\title{Efficiency Factor as Suggested by Nash and Sutcliffe}
 
 \description{The efficiency factor is a dimensionless statistic which
   directly relates predictions to observed data.}
