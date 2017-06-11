@@ -1,5 +1,6 @@
 0.3.3
  o fix empty string bug in LCS
+ o register native routines
 
 0.3.2
  o NAMESPACE imports now standard packages
