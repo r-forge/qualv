@@ -20,7 +20,7 @@ static const R_CallMethodDef CallEntries[] = {
     {NULL,        NULL,               0}
 };
 
-void R_init_deSolve(DllInfo *dll) {
+void R_init_qualV(DllInfo *dll) {
   // register entry points
   R_registerRoutines(dll, CEntries, CallEntries, NULL, NULL);
   
