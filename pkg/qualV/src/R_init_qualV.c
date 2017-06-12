@@ -11,10 +11,6 @@
 
 extern SEXP  lcs(SEXP, SEXP , SEXP);
 
-static const R_CMethodDef CEntries[] = {
-    {NULL, NULL, 0}
-}; 
-
 static const R_CallMethodDef CallEntries[] = {
     {"lcs",      (DL_FUNC) &lcs,      3},
     {NULL,        NULL,               0}
@@ -22,7 +18,7 @@ static const R_CallMethodDef CallEntries[] = {
 
 void R_init_qualV(DllInfo *dll) {
   // register entry points
-  R_registerRoutines(dll, CEntries, CallEntries, NULL, NULL);
+  R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
   
   // the following two lines protect against accidentially finding entry points
   R_useDynamicSymbols(dll, FALSE);  // disable dynamic searching
