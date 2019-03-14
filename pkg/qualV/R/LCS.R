@@ -1,14 +1,25 @@
 
 ## Interface to C version of LCS provided by Dominik Reusser
+## modified by ThPe
 
 LCS <- function(a, b){
-    stopifnot(is.character(a), is.character(b))
-    if(any(is.na(c(a, b))) | any(list(a, b) == "")){
-       out <- list(a = a, b = b, LLCS = NA, LCS = NA, QSI = NA, va = NA, vb = NA)
-    } else {
-       out <- .Call(lcs, as.character(a), as.character(b), max(nchar(c(a, b))), PACKAGE="qualV")
-    }
-    invisible(out)
+  if (is.numeric(a) & is.numeric(b) |
+      is.factor(a) & is.factor(b)) {
+    a <- as.character(a)
+    b <- as.character(b)
+  }
+  if (class(a) != class(b)) {
+    warning("a and b are from different classes:\n",
+    "  a has class ", class(a), "\n",
+    "  b has class ", class(b), "\n")
+  }
+  stopifnot(is.character(a), is.character(b))
+  if(any(is.na(c(a, b))) | any(list(a, b) == "")){
+    out <- list(a = a, b = b, LLCS = NA, LCS = NA, QSI = NA, va = NA, vb = NA)
+  } else {
+    out <- .Call(lcs, as.character(a), as.character(b), max(nchar(c(a, b))), PACKAGE="qualV")
+  }
+  invisible(out)
 }
 
 ## original, pure R version of LCS
