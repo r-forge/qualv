@@ -1,5 +1,6 @@
 0.3.4
  o add ORCID to list of authors
+ o reformat doi fields
 
 0.3.3
  o fix empty string bug in LCS
