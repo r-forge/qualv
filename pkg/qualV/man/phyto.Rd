@@ -9,8 +9,7 @@
   of phytoplankton.
 }
 \usage{
-obs
-sim
+data(phyto)
 }
 \format{Two data frames of two variables with the following components:
 
