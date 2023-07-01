@@ -132,7 +132,7 @@ summary.qvalLCS <- function (object, ...) {
   print(unclass(object))
 }
 
-plot.feature <- function(data.f, lsc.v) {
+plot_feature <- function(data.f, lsc.v) {
   pf <- numeric(length(lsc.v))
   pf[1] <- 1
   for (i in 2:length(lsc.v)) {
@@ -160,8 +160,8 @@ plot.qvalLCS <- function (x, y = NULL, ...,
   leg.col <- NULL
   leg.name <- c("measurement")
 
-  ca <- plot.feature(x$obsf, x$lcs$va)
-  cb <- plot.feature(x$simf, x$lcs$vb)
+  ca <- plot_feature(x$obsf, x$lcs$va)
+  cb <- plot_feature(x$simf, x$lcs$vb)
 
   plot(x$sim$x, x$sim$y, xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab,
        type = "l", ..., col = col.pred, lwd = 2)
