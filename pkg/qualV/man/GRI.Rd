@@ -22,7 +22,7 @@
 
 \references{Leggett, L. R. and Williams, L. R. (1981) A reliability index for
   models. Ecological Modelling, 13, 303-312. 
-  \url{https://doi.org/10.1016/0304-3800(81)90034-X}}
+  \doi{10.1016/0304-3800(81)90034-X}}
 
 \seealso{\code{\link{MAE}}, \code{\link{MSE}}, \code{\link{MAPE}}, \code{\link{EF}}}
 
