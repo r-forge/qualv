@@ -1,6 +1,6 @@
 Package: qualV
 Title: Qualitative Validation Methods
-Version: 0.3-4
+Version: 0.3-5
 Authors@R: c(person("K. Gerald", "van den Boogaart", role = c("aut", "ths"),
                  comment = c(ORCID = "0000-0003-4646-943X")),
              person("Stefanie", "Rost", role = "aut"),

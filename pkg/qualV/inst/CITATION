@@ -1,11 +1,12 @@
 citHeader("To cite package 'qualV' in publications use:")
 
-citEntry(entry = "Article",
+bibentry(
+  bibtype  = "Article",
   title    =  "Statistical Methods for the Qualitative Assessment 
     of Dynamic Models with Time Delay (R Package qualV)",
-  author   =  personList(as.person("Stefanie  Jachner"), 
-                         as.person("K. Gerald van den Boogaart"),
-                         as.person("Thomas  Petzoldt")),
+  author   =  c(person("Stefanie  Jachner"), 
+                person("K. Gerald van den Boogaart"),
+                person("Thomas  Petzoldt")),
   journal  =  "Journal of Statistical Software",
   volume   =  "22",
   number   =  "8",

@@ -1,6 +1,6 @@
 \name{GRI}
 \alias{GRI}
-\title{A Geometric Reliability Index as Suggested by Leggett \& Williams}
+\title{Geometric Reliability Index as Suggested by Leggett and Williams (1981)}
 
 \description{Given a set of predictions and a corresponding set of
   observations, the geometric validation index is a reliability index for
@@ -21,7 +21,8 @@
   predicted values. Values close to one indicate a good match.}
 
 \references{Leggett, L. R. and Williams, L. R. (1981) A reliability index for
-  models. Ecological Modelling, 13, 303-312.}
+  models. Ecological Modelling, 13, 303-312. 
+  \url{https://doi.org/10.1016/0304-3800(81)90034-X}}
 
 \seealso{\code{\link{MAE}}, \code{\link{MSE}}, \code{\link{MAPE}}, \code{\link{EF}}}
 
